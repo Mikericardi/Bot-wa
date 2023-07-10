@@ -1,0 +1,21 @@
+import fetch from 'node-fetch'
+
+let handler = async(m, { conn, text }) => {
+  if (!text) throw `Nyari Apa?`
+  let res = await fetch(`https://api.zeltoria.my.id/api/anime/doujindesu/search?query=${text}&apikey=${global.zeltoria}`)
+  let json = await res.json()
+  let { title, thumbnail, type, score, status, url } = json.result[0]
+let milf = `• *Judul:* ${title}
+• *Type:* ${type}
+• *Score:* ${score}
+• *Status:* ${status}
+• *Link:* ${json.}
+`
+  conn.reply(m.chat, komiku, m)
+}
+handler.help = ['komikudetail']
+handler.tags = ['anime']
+handler.command = /^(komikudetail)$/i
+handler.limit = true
+
+export default handler
